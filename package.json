@@ -1,6 +1,6 @@
 {
   "name": "ruta-platzi",
-  "description": "mejor forma de crear las rutas personalizadas de Platzi",
+  "description": "Crea tu ruta personalizada de aprendizaje en Platzi",
   "version": "1.0.0",
   "author": "Daniel Pereira @danielpp95",
   "private": true,
