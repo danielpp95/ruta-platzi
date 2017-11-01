@@ -1,31 +1,32 @@
 <template lang='pug'>
   #app
     div#selects
-      input(type="text" v-model="nombre")
-      select#cursoBasico(v-model="cursos[0]")
+      input(type='text' v-model='nombre')
+      select#cursoBasico(v-model='cursos[0]')
         option(value='0') El mas basico
-        option(v-for="i in insignias" :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model="cursos[1]")
+        option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      select#cursoBasico(v-model='cursos[1]')
         option(value='0') El que mas te gusta
-        option(v-for="i in insignias" :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model="cursos[2]")
+        option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      select#cursoBasico(v-model='cursos[2]')
         option(value='0') Otro basico que complemente
-        option(v-for="i in insignias" :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model="cursos[3]")
+        option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      select#cursoBasico(v-model='cursos[3]')
         option(value='0') Tecnologia en que te centraste
-        option(v-for="i in insignias" :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model="cursos[4]")
+        option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      select#cursoBasico(v-model='cursos[4]')
         option(value='0') La version profesional
-        option(v-for="i in insignias" :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model="cursos[5]")
+        option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      select#cursoBasico(v-model='cursos[5]')
         option(value='0') Especializate
-        option(v-for="i in insignias" :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model="cursos[6]")
+        option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      select#cursoBasico(v-model='cursos[6]')
         option(value='0') Profundiza y refuerza
-        option(v-for="i in insignias" :value='i.id') {{i.curso}}
+        option(v-for='i in insignias' :value='i.id') {{i.curso}}
 
       button(v-on:click='canvas') Enviar!
 
+    a#descarga(v-on:click='download') Descargar
     div#canvas
       img#ruta(width='1080', height='1080', src='./assets/rutas/ruta_profesional.png', alt='Ruta', hidden='')
       canvas#myCanvas(width='900', height='1040', style='border:1px solid #d3d3d3;')
@@ -54,7 +55,8 @@ export default {
       img: require('@/assets/rutas/ruta_profesional.png'),
       cursos: [0, 0, 0, 0, 0, 0, 0],
       bad: [0, 1, 2, 3, 4, 5, 6],
-      nombre: ''
+      nombre: '',
+      imgData: null
     }
   },
   methods: {
@@ -79,6 +81,12 @@ export default {
           isrendering = false
         }
       }
+    },
+    download: function () {
+      var canvas = document.getElementById('myCanvas')
+      var a = document.getElementById('descarga')
+      a.download = 'Ruta_Platzi.png'
+      a.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
     }
   },
   computed: {
