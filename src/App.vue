@@ -50,10 +50,10 @@ export default {
   name: 'app',
   data () {
     return {
-      badges,
-      insignias,
-      img: require('@/assets/rutas/ruta_profesional.png'),
-      cursos: [0, 0, 0, 0, 0, 0, 0],
+      badges, // imagenes de fondo de las rutas
+      insignias, // imagenes de los cursos y carreras
+      img: require('@/assets/rutas/ruta_profesional.png'), // imagen de fondo
+      cursos: [0, 0, 0, 0, 0, 0, 0], // 
       bad: [0, 1, 2, 3, 4, 5, 6],
       nombre: '',
       imgData: null
@@ -206,7 +206,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
