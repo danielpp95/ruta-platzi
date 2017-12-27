@@ -1,45 +1,54 @@
 <template lang='pug'>
   #app
-    div#selects
-      input(type='text' v-model='nombre')
-      select#cursoBasico(v-model='cursos[0]')
-        option(value='0') El mas basico
-        option(v-for='i in insignias' :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model='cursos[1]')
-        option(value='0') El que mas te gusta
-        option(v-for='i in insignias' :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model='cursos[2]')
-        option(value='0') Otro basico que complemente
-        option(v-for='i in insignias' :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model='cursos[3]')
-        option(value='0') Tecnologia en que te centraste
-        option(v-for='i in insignias' :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model='cursos[4]')
-        option(value='0') La version profesional
-        option(v-for='i in insignias' :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model='cursos[5]')
-        option(value='0') Especializate
-        option(v-for='i in insignias' :value='i.id') {{i.curso}}
-      select#cursoBasico(v-model='cursos[6]')
-        option(value='0') Profundiza y refuerza
-        option(v-for='i in insignias' :value='i.id') {{i.curso}}
+    div#select
+      input.input(type='text' v-model='nombre' placeholder="Tu Nombre")
+      .select
+        select#cursoBasico(v-model='cursos[0]')
+          option(value='0') El mas basico
+          option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      .select
+        select#cursoBasico(v-model='cursos[1]')
+          option(value='0') El que mas te gusta
+          option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      .select
+        select#cursoBasico(v-model='cursos[2]')
+          option(value='0') Otro basico que complemente
+          option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      .select
+        select#cursoBasico(v-model='cursos[3]')
+          option(value='0') Tecnologia en que te centraste
+          option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      .select
+        select#cursoBasico(v-model='cursos[4]')
+          option(value='0') La version profesional
+          option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      .select
+        select#cursoBasico(v-model='cursos[5]')
+          option(value='0') Especializate
+          option(v-for='i in insignias' :value='i.id') {{i.curso}}
+      .select
+        select#cursoBasico(v-model='cursos[6]')
+          option(value='0') Profundiza y refuerza
+          option(v-for='i in insignias' :value='i.id') {{i.curso}}
 
-      button(v-on:click='canvas') Enviar!
+      button.button.is-success.is-inverted(v-on:click='canvas') Crear ruta!
 
-    a#descarga(v-on:click='download') Descargar
+      a#descarga.button(v-on:click='download') Descargar
+
     div#canvas
-      img#ruta(width='1080', height='1080', src='./assets/rutas/ruta_profesional.png', alt='Ruta', hidden='')
-      canvas#myCanvas(width='900', height='1040', style='border:1px solid #d3d3d3;')
-        | Your browser does not support the HTML5 canvas tag.
+      img#ruta(width='1080', height='1080', :src='img', alt='Ruta', hidden='')
+      canvas#myCanvas.level(width='900', height='1040', style='border:1px solid #d3d3d3;')
+          | Your browser does not support the HTML5 canvas tag.
     div#images
-      img(id='basico' width='180', height='180' :src='cursoBasico' hidden)
-      img(id='gusta' width='180', height='180' :src='cursoGusto' hidden)
-      img(id='complemento' width='180', height='180' :src='complemento' hidden)
-      img(id='tecnologia' width='180', height='180' :src='tecnologia' hidden)
-      img(id='profesional' width='180', height='180' :src='profesional' hidden)
-      img(id='especializate' width='180', height='180' :src='especializate' hidden)
-      img(id='profundiza' width='180', height='180' :src='profundiza' hidden)
-      
+      img(id='basico' width='180', height='180' :src='cursoBasico' hidden )
+      img(id='gusta' width='180', height='180' :src='cursoGusto' hidden )
+      img(id='complemento' width='180', height='180' :src='complemento' hidden )
+      img(id='tecnologia' width='180', height='180' :src='tecnologia' hidden )
+      img(id='profesional' width='180', height='180' :src='profesional' hidden )
+      img(id='especializate' width='180', height='180' :src='especializate' hidden )
+      img(id='profundiza' width='180', height='180' :src='profundiza' hidden )
+    br
+    br
 </template>
 
 <script>
@@ -47,13 +56,13 @@ import badges from '@/helpers/badges'
 import insignias from '@/helpers/insignias'
 
 export default {
-  name: 'app',
+  name: 'ruta-platzi',
   data () {
     return {
-      badges, // imagenes de fondo de las rutas
-      insignias, // imagenes de los cursos y carreras
-      img: require('@/assets/rutas/ruta_profesional.png'), // imagen de fondo
-      cursos: [0, 0, 0, 0, 0, 0, 0], // 
+      badges,
+      insignias,
+      img: require('@/assets/rutas/ruta_profesional.png'),
+      cursos: [0, 0, 0, 0, 0, 0, 0],
       bad: [0, 1, 2, 3, 4, 5, 6],
       nombre: '',
       imgData: null
@@ -61,6 +70,7 @@ export default {
   },
   methods: {
     canvas: function () {
+      console.log(this.cursos)
       var isrendering = true
       const nombre = this.nombre
       var canvas = document.getElementById('myCanvas')
@@ -69,11 +79,33 @@ export default {
       var img = document.getElementById('ruta')
       ctx.drawImage(img, 0, 0)
 
+      // Nivel de insignia
       for (var b = 0; b < badges.length; b++) {
         var element = badges[b]
         const bg = document.getElementById(element.value)
+        ctx.font = '15px Arial'
+        ctx.textAlign = 'center'
         ctx.drawImage(bg, element.x, element.y)
+        // ctx.fillText(cursos[b], (element.x + 80), (element.y + 180))
 
+        // Insignia
+        for (var i = 0; i < this.insignias.length; i++) {
+          if (this.insignias[i].id === this.cursos[b]) {
+            /// ///////
+            var elemento = this.insignias[i].curso
+            // ctx.fillText(elemento, (element.x + 80), (element.y + 180))
+            /// //////
+            var lines = elemento.split('\n')
+            var lineheight = 15
+            for (var z = 0; z < lines.length; z++) {
+              ctx.fillText(lines[z], (element.x + 80), (element.y + 180) + (z * lineheight))
+            }
+            /// //////
+            break
+          }
+        }
+
+        // Nombre
         if (isrendering) {
           ctx.font = 'bold 30px Arial'
           ctx.textAlign = 'center'
@@ -206,3 +238,7 @@ export default {
     }
 }
 </script>
+
+<style>
+
+</style>

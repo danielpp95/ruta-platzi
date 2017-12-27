@@ -5,8 +5,8 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    publicPath: './dist/',
+    filename: 'js/build.[hash].js'
   },
   module: {
     rules: [
@@ -36,10 +36,13 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]?[hash]'
+        test: /\.(png|jpg)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 100000,
+            name: 'img/[name].[ext]'
+          }
         }
       }
     ]
@@ -48,7 +51,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, './src')
-    }
+    },
+    extensions: ['.js', '.vue']
   },
   devServer: {
     historyApiFallback: true,

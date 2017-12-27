@@ -11,6 +11,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "url-loader": "^0.6.2",
     "vue": "^2.4.4"
   },
   "devDependencies": {
@@ -19,7 +20,6 @@
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
-    "file-loader": "^1.1.4",
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
@@ -28,6 +28,7 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
+    "file-loader": "^1.1.4",
     "pug": "^2.0.0-rc.4",
     "pug-loader": "^2.3.0",
     "vue-loader": "^13.0.5",
